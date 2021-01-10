@@ -7,6 +7,7 @@ package primerossiguientes;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import org.edisoncor.gui.progressBar.ProgressBarRect;
 
 /**
  *
@@ -14,6 +15,8 @@ import java.util.StringTokenizer;
  */
 public final class Procesos {
 
+    int numGrma = 0;
+    org.edisoncor.gui.progressBar.ProgressBarRect pr;
     private String pathGramatica;
     private LDL listaGramatica;
     private String[][] tablaPredictiva;
@@ -36,10 +39,18 @@ public final class Procesos {
             this.buscarObjetosTerminales();
 
         } catch (Exception e) {
-            Mensaje.error(null, "Ha ocurrido un error"+e);
-          
+            Mensaje.error(null, "Ha ocurrido un error" + e);
+
         }
 
+    }
+
+    public ProgressBarRect getPr() {
+        return pr;
+    }
+
+    public void setPr(ProgressBarRect pr) {
+        this.pr = pr;
     }
 
     public ArrayList<ConjuntoA> getConjuntos() {
@@ -145,6 +156,7 @@ public final class Procesos {
                     n.setP(pilaG);
                     lisaGramatica.inserta(n, null);
                     cont++;
+                    numGrma++;
                 }
             }
             i++;
@@ -290,13 +302,102 @@ public final class Procesos {
 
         return s;
     }
+    int seg = 0;
+    int objNa = 0;
+    public Thread procesosPrimeros = new Thread() {
+
+        public void run() {
+            try {
+                objNa = getObjNT().length;
+                for (int i = 0; i < getObjNT().length; i++) {
+                    ObjetosNoTeminales n = new ObjetosNoTeminales();
+                    n.setObjNT(getObjNT()[i]);
+                    n.setPrimeros(buscaPrimeros(getObjNT()[i]));
+                    objPyS.add(n);
+
+                    seg = ((i) * 100) / objNa;
+                    if (seg <= 7.6) {
+                        pr.setForeground(new java.awt.Color(153, 0, 0));
+                    }
+                    if (seg > 7.6 && seg <= 15.2) {
+                        pr.setForeground(new java.awt.Color(204, 0, 0));
+                    }
+                    if (seg > 15.2 && seg <= 22.8) {
+                        pr.setForeground(new java.awt.Color(255, 0, 0));
+                    }
+                    if (seg > 22.8 && seg <= 30.4) {
+                        pr.setForeground(new java.awt.Color(255, 51, 0));
+                    }
+                    if (seg > 30.4 && seg <= 38) {
+                        pr.setForeground(new java.awt.Color(255, 102, 0));
+                    }
+                    if (seg > 38 && seg <= 45.6) {
+                        pr.setForeground(new java.awt.Color(255, 153, 0));
+                    }
+                    if (seg > 45.6 && seg <= 53.2) {
+                        pr.setForeground(new java.awt.Color(255, 204, 0));
+                    }
+                    if (seg > 53.2 && seg <= 60.8) {
+                        pr.setForeground(new java.awt.Color(204, 204, 0));
+                    }
+                    if (seg > 60.8 && seg <= 68.4) {
+                        pr.setForeground(new java.awt.Color(102, 250, 0));
+                    }
+                    if (seg > 68.4 && seg <= 76) {
+                        pr.setForeground(new java.awt.Color(51, 204, 0));
+
+                    }
+                    if (seg > 76 && seg <= 83.6) {
+                        pr.setForeground(new java.awt.Color(102, 204, 0));
+                    }
+                    if (seg > 83.6 && seg <= 91.2) {
+                        pr.setForeground(new java.awt.Color(0, 204, 0));
+                    }
+                    if (seg > 91.2 && seg <= 100) {
+                        pr.setForeground(new java.awt.Color(0, 204, 51));
+                    }
+                    pr.setValue(seg);
+                    procesosPrimeros.sleep((long) 0.001);
+                }
+                pr.setValue(0);
+                seg=0;
+                objNa=0;
+                Mensaje.exito(null, "Proceso realizado con exito");
+                
+                for (int i = 0; i < objPyS.size(); i++) {
+
+                    String primeros = objPyS.get(i).getPrimeros();
+                    StringTokenizer st = new StringTokenizer(primeros, " ", true);
+                    String s1 = "";
+                    String[] s2 = null;
+
+                    while (st.hasMoreElements()) {
+                        s1 = st.nextToken();
+                        s2 = agregarObj(s1, s2);
+                    }
+                    if (s2 != null) {
+                        s2 = eliminarRepetidos(s2);
+                        primeros = "";
+                        for (int j = 0; j < s2.length; j++) {
+                            primeros += " " + s2[j];
+                        }
+
+                    }
+                    objPyS.get(i).setPrimeros(primeros);
+                }
+            } catch (InterruptedException e) {
+            }
+        }
+    };
 
     public void procesoPrimeros() {
+
         for (int i = 0; i < getObjNT().length; i++) {
             ObjetosNoTeminales n = new ObjetosNoTeminales();
             n.setObjNT(getObjNT()[i]);
             n.setPrimeros(buscaPrimeros(getObjNT()[i]));
             objPyS.add(n);
+
         }
         for (int i = 0; i < objPyS.size(); i++) {
 
@@ -324,6 +425,7 @@ public final class Procesos {
     public String buscaPrimeros(String objNT) {
         String s = "";
         Nodo aux = getListaGramatica().getR();
+
         while (aux != null) {
             if (aux.getS().equals(objNT)) {
 
