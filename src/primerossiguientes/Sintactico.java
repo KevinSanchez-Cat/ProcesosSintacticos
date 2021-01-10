@@ -5,7 +5,10 @@
  */
 package primerossiguientes;
 
+import java.awt.Cursor;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.edisoncor.gui.progressBar.ProgressBarRect;
 
 /**
  *
@@ -27,7 +31,11 @@ public class Sintactico extends javax.swing.JFrame {
      * Creates new form Sintactico
      */
     public Sintactico() {
+        Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/17854 - cubes module modules.png"));
+        this.setIconImage(icono);
+
         initComponents();
+
         this.setLocationRelativeTo(null);
         this.setTitle("ProcesosSintacticos");
         // this.setResizable(false);
@@ -52,7 +60,6 @@ public class Sintactico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         btnGramatica = new javax.swing.JButton();
         btnPrimeros = new javax.swing.JButton();
         btnSiguientes = new javax.swing.JButton();
@@ -60,69 +67,100 @@ public class Sintactico extends javax.swing.JFrame {
         btnTerminar = new javax.swing.JButton();
         btnTabla = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        progressBarRect1 = new org.edisoncor.gui.progressBar.ProgressBarRect();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnGramatica.setText("Cargar Gramatica separada");
-        btnGramatica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGramatica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnGramatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGramaticaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGramatica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 190, -1));
 
         btnPrimeros.setText("Buscar primeros");
-        btnPrimeros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPrimeros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnPrimeros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrimerosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPrimeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 150, -1));
 
         btnSiguientes.setText("Buscar siguientes");
-        btnSiguientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSiguientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguientesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 130, -1));
 
         btnAmbiguedad.setText("Buscar ambiguedades");
-        btnAmbiguedad.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAmbiguedad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAmbiguedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAmbiguedadActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAmbiguedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 160, -1));
 
         btnTerminar.setText("Terminar");
-        btnTerminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnTerminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTerminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTerminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 470, 90, -1));
 
         btnTabla.setText("Llenar tabla predictiva");
-        btnTabla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnTabla.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTablaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 470, 150, 20));
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 920, 440));
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGramatica, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPrimeros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSiguientes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAmbiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 304, Short.MAX_VALUE))
+                    .addComponent(progressBarRect1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progressBarRect1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGramatica)
+                    .addComponent(btnPrimeros)
+                    .addComponent(btnSiguientes)
+                    .addComponent(btnAmbiguedad)
+                    .addComponent(btnTerminar)
+                    .addComponent(btnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -137,6 +175,7 @@ public class Sintactico extends javax.swing.JFrame {
         this.btnTerminar.setEnabled(true);
         this.btnTabla.setEnabled(false);
     }//GEN-LAST:event_btnAmbiguedadActionPerformed
+    int numGram = 0;
 
     private void btnGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGramaticaActionPerformed
 
@@ -175,6 +214,7 @@ public class Sintactico extends javax.swing.JFrame {
                     this.btnTerminar.setEnabled(false);
                     this.btnTabla.setEnabled(false);
                     pcs = new Procesos(url);
+                    pcs.setPr(progressBarRect1);
                 } else {
                     Mensaje.advertencia(this, "No se ha extraido el archivo por cancelacion");
                 }
@@ -189,8 +229,8 @@ public class Sintactico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGramaticaActionPerformed
 
     private void btnPrimerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimerosActionPerformed
-        pcs.procesoPrimeros();
-        Mensaje.exito(this, "Proceso realizado con exito");
+        pcs.procesosPrimeros.start();
+        progressBarRect1.setValue(0);
         this.btnGramatica.setEnabled(true);
         this.btnPrimeros.setEnabled(true);
         this.btnSiguientes.setEnabled(true);
@@ -200,13 +240,14 @@ public class Sintactico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrimerosActionPerformed
 
     private void btnSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguientesActionPerformed
+
         String inicio = JOptionPane.showInputDialog(this, "Introduce el objeto raiz de la gramatica", "Inicio", 1);
         if (inicio != null) {
             if (inicio.isEmpty()) {
                 Mensaje.advertencia(this, "No se ha introducido ningun valor ");
             } else {
-//
-//
+
+                setCursor(new Cursor(Cursor.WAIT_CURSOR));
                 if (pcs.procesoSiguientes(inicio)) {
                     Mensaje.exito(this, "Proceso realizado con exito");
                     this.btnGramatica.setEnabled(true);
@@ -215,7 +256,9 @@ public class Sintactico extends javax.swing.JFrame {
                     this.btnAmbiguedad.setEnabled(true);
                     this.btnTerminar.setEnabled(false);
                     this.btnTabla.setEnabled(false);
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 } else {
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                     Mensaje.advertencia(this, "La entrada no aparece en los registros, por favor verifique el dato ");
                 }
             }
@@ -268,7 +311,12 @@ public class Sintactico extends javax.swing.JFrame {
             filas[0] = pcs.getObjPyS().get(i).getObjNT();
             filas[1] = pcs.getObjPyS().get(i).getPrimeros();
             filas[2] = pcs.getObjPyS().get(i).getSiguientes();
-            filas[3] = String.valueOf(pcs.getObjPyS().get(i).isAmbiguedad());
+           if(pcs.getObjPyS().get(i).isAmbiguedad()){
+               filas[3] = "Si"; 
+           }else{
+               filas[3] = "No";
+           }
+            //String.valueOf(pcs.getObjPyS().get(i).isAmbiguedad());
 
             model.addRow(filas);
         }
@@ -305,7 +353,7 @@ public class Sintactico extends javax.swing.JFrame {
     private javax.swing.JButton btnSiguientes;
     private javax.swing.JButton btnTabla;
     private javax.swing.JButton btnTerminar;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.edisoncor.gui.progressBar.ProgressBarRect progressBarRect1;
     // End of variables declaration//GEN-END:variables
 }
