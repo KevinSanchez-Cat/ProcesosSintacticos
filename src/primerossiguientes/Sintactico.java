@@ -206,6 +206,7 @@ public class Sintactico extends javax.swing.JFrame {
                 Mensaje.advertencia(this, "No se ha introducido ningun valor ");
             } else {
 //
+//
                 if (pcs.procesoSiguientes(inicio)) {
                     Mensaje.exito(this, "Proceso realizado con exito");
                     this.btnGramatica.setEnabled(true);
