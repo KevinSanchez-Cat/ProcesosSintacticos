@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import org.edisoncor.gui.progressBar.ProgressBarRect;
 
 /**
  *
@@ -237,6 +236,11 @@ public class Sintactico extends javax.swing.JFrame {
         this.btnAmbiguedad.setEnabled(false);
         this.btnTerminar.setEnabled(false);
         this.btnTabla.setEnabled(false);
+        for (int i = 0; i < pcs.getObjPyS().size(); i++) {
+            System.out.print(pcs.getObjPyS().get(i).getObjNT() + "\t");
+            System.out.print(pcs.getObjPyS().get(i).getPrimeros() + "\n");
+        }
+
     }//GEN-LAST:event_btnPrimerosActionPerformed
 
     private void btnSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguientesActionPerformed
@@ -311,11 +315,22 @@ public class Sintactico extends javax.swing.JFrame {
             filas[0] = pcs.getObjPyS().get(i).getObjNT();
             filas[1] = pcs.getObjPyS().get(i).getPrimeros();
             filas[2] = pcs.getObjPyS().get(i).getSiguientes();
-           if(pcs.getObjPyS().get(i).isAmbiguedad()){
-               filas[3] = "Si"; 
-           }else{
-               filas[3] = "No";
-           }
+
+            char[] toCharArray = pcs.getObjPyS().get(i).getPrimeros().toCharArray();
+            boolean vaci = false;
+            for (int j = 0; j < toCharArray.length; j++) {
+                if (toCharArray[j] == 'λ') {
+                    vaci = true;
+                    break;
+                }
+            }
+            if (pcs.getObjPyS().get(i).isAmbiguedad()==true && vaci==true) {
+                filas[3] = "Si";
+            } else if(pcs.getObjPyS().get(i).isAmbiguedad()==true && vaci==false){
+                filas[3] = "No";
+            }else{
+                filas[3] = "No";
+            }
             //String.valueOf(pcs.getObjPyS().get(i).isAmbiguedad());
 
             model.addRow(filas);

@@ -360,10 +360,10 @@ public final class Procesos {
                     procesosPrimeros.sleep((long) 0.001);
                 }
                 pr.setValue(0);
-                seg=0;
-                objNa=0;
+                seg = 0;
+                objNa = 0;
                 Mensaje.exito(null, "Proceso realizado con exito");
-                
+
                 for (int i = 0; i < objPyS.size(); i++) {
 
                     String primeros = objPyS.get(i).getPrimeros();
@@ -428,6 +428,7 @@ public final class Procesos {
 
         while (aux != null) {
             if (aux.getS().equals(objNT)) {
+                System.out.println(aux.getS());
 
                 PilaD pilaAux1 = aux.getP();
                 PilaD pilaAux2 = new PilaD();
@@ -798,12 +799,15 @@ public final class Procesos {
                     siguiente.add(sS);
                 }
             }
-
             for (int j = 0; j < primero.size(); j++) {
+               
                 for (int k = 0; k < siguiente.size(); k++) {
-                    if (primero.get(j).equals(siguiente.get(k))) {
 
-                        objPyS.get(i).setAmbiguedad(true);
+                    if (primero.get(j).equals(siguiente.get(k))) {
+                      
+                            objPyS.get(i).setAmbiguedad(true);
+                        
+
                     }
                 }
             }
