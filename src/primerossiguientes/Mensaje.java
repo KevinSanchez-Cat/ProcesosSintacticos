@@ -37,7 +37,7 @@ public class Mensaje {
      * @param s Cadena con el mensaje a desplegar
      */
     public static void exito(JFrame jf, String s) {
-        JOptionPane.showMessageDialog(jf, s, "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(jf, s, "Mensaje de error", JOptionPane.WARNING_MESSAGE);
 
     }
 
