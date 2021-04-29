@@ -5,15 +5,20 @@
  */
 package primerossiguientes;
 
+
+import javax.swing.JFrame;
+
 /**
  *
- * @author por_s
+ * @author Mauro Sanchez2
  */
-public class ConjuntoA {
+public class ConjuntoA
+{
+  
     private String A;
     private String alpha;
+    private String Betha;
     private String B;
-    private String betha;
 
     public String getA() {
         return A;
@@ -31,6 +36,14 @@ public class ConjuntoA {
         this.alpha = alpha;
     }
 
+    public String getBetha() {
+        return Betha;
+    }
+
+    public void setBetha(String Betha) {
+        this.Betha = Betha;
+    }
+
     public String getB() {
         return B;
     }
@@ -38,15 +51,6 @@ public class ConjuntoA {
     public void setB(String B) {
         this.B = B;
     }
-
-    public String getBetha() {
-        return betha;
-    }
-
-    public void setBetha(String betha) {
-        this.betha = betha;
-    }
-
-    
     
 }
+
